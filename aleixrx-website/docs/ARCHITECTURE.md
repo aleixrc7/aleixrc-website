@@ -1,62 +1,105 @@
+<!-- docs/ARCHITECTURE.md -->
+
 # Architecture
 
-## Principios
-- Utilizamos patrones MVC/MVVM
-- Separar UI de lógica de aplicación.
-- Componentes pequeños y enfocados.
-- Preferir composición.
-- Evitar "smart components" enormes.
-- Sin sobre-ingeniería: patrones solo si aportan claridad.
+## Core Principles
+- MVC/MVVM Patterns
+- Maintain a SPA-like user experience, even if implemented with Next.js routing.
+- Separate UI rendering from data/state orchestration.
+- Keep components small and focused.
+- Prefer composition over complex abstractions.
+- Incremental development: small changes, tested, then refactor.
 
-## Estructura de carpetas
+## Routing
+- Use Next.js App Router (`src/app`) unless the repository already uses Pages Router.
+- Pages should be mostly composition and layout wiring, not business logic.
+
+## Suggested Folder Structure
+(Adjust if your project already differs, but keep the same layering idea.)
+
 src/
   app/
     layout.tsx
     page.tsx
-    (routes)/
-      tasks/
-        page.tsx
+    dashboard/page.tsx
+    skills/page.tsx
+    projects/page.tsx
+
   features/
-    tasks/
-      domain/
-        types.ts
-        task.ts
-      services/
-        taskRepository.ts
-      hooks/
-        useTasks.ts
+    dashboard/
       components/
-        TaskList.tsx
-        TaskForm.tsx
+      hooks/
+      model/
       index.ts
+    skills/
+      components/
+      model/
+      index.ts
+    projects/
+      components/
+      model/
+      index.ts
+
   shared/
     components/
+      layout/
+        Sidebar.tsx
+        AppShell.tsx
     lib/
+      data/
+      testing/
     styles/
     types/
 
-## Capas
-- app/: routing y composición de páginas (casi sin lógica).
-- features/: módulos por dominio (Tasks, etc.)
-  - domain/: tipos y lógica de dominio (pura, sin React)
-  - services/: repositorios/adapters (ej. localStorage)
-  - hooks/: orquestación de estado y casos de uso para UI
-  - components/: UI del feature (presentational)
-- shared/: utilidades y componentes reutilizables
+## Layering Rules
+- `app/`:
+  - routing + page composition
+  - imports from `features/*` and `shared/*`
+- `features/*`:
+  - each section (dashboard/skills/projects) is a feature module
+  - may contain:
+    - `model/` for types + pure mapping logic
+    - `hooks/` for state orchestration (if needed)
+    - `components/` for UI pieces specific to the feature
+- `shared/*`:
+  - reusable components and utilities
+  - MUST NOT import from `features/*`
 
-## Patrón de datos (sin API)
-- Repository pattern para aislar storage:
-  - TaskRepository: getAll, add, toggleComplete, remove
-- Implementación inicial: LocalStorageTaskRepository
-- Los hooks consumen el repositorio, la UI consume hooks.
+## Data Strategy (No API)
+Use local sources with types:
+- `src/shared/lib/data/*.ts` or `src/shared/lib/data/*.json`
+- Export typed data structures (e.g. `Skill[]`, `Project[]`)
+- Optional: create a simple repository interface for future flexibility, but avoid overengineering.
 
-## Estado
-- Para MVP: useState/useReducer dentro de hooks del feature.
-- No introducir librerías de estado global sin necesidad.
+Example approach:
+- `ProjectRepository` interface (optional)
+- `LocalProjectRepository` implementation reading from local data modules
 
-## Error handling
-- Los repositorios devuelven resultados predecibles.
-- Manejar estados: loading (si aplica), empty, error.
+## State Management
+- Prefer local state via React hooks.
+- Avoid global state unless necessary.
+- If state grows, consider `useReducer` inside feature hooks.
 
-## Testing (opcional al inicio)
-- Testear dominio (puro) y repositorio (localStorage con mocks).
+## UI + Bootstrap
+- Use Bootstrap classes consistently.
+- Keep layout primitives in `shared/components/layout`.
+- Sidebar should be a shared component:
+  - receives nav configuration
+  - highlights active route
+
+## Testing Strategy (TDD-Friendly)
+- Write a failing test first for each meaningful change.
+- Focus on:
+  - components: React Testing Library
+  - pure logic: unit tests (no DOM)
+- Keep tests close to the unit under test, e.g.:
+  - `ComponentName.test.tsx`
+  - `mapper.test.ts`
+- Aim to test behavior, not implementation details.
+
+## Definition of Done (Architectural)
+A change is considered done when:
+- It follows folder/layer rules.
+- It compiles and passes tests.
+- It does not introduce unused abstractions.
+- UI remains accessible and responsive.
