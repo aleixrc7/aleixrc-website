@@ -1,6 +1,6 @@
 # Project Brief
 
-## Objetivo
+## goal
 build a SPS (Single Page App) with Next.js + React using cleand code, good practices and patterns.
 
 ## Stack
