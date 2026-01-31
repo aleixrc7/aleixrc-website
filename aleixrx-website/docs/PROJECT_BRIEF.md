@@ -6,26 +6,32 @@ build a SPS (Single Page App) with Next.js + React using cleand code, good pract
 ## Stack
 - Next.js (App Router)
 - React
-- TypeScript
+- TypeScript (recommended)
+- Bootstrap (UI styling)
 
-## Restrictions
-- Don't do API calls (not REST, not GraphQL).
-- Data will be:
-  - mocks or
-  - localStorage when it's need it.
-- Avoid unnecessary dependencies. If something isn’t approved, it doesn’t get added.
+## Non-Goals / Constraints
+- No external API calls (no REST, no GraphQL).
+- No backend.
+- Content can be:
+  - hardcoded data (temporary),
+  - local JSON/TS modules,
+  - markdown/MDX (optional, if agreed).
+- Avoid unnecessary dependencies. If not explicitly approved, do not add new libraries.
 
-## Alcance inicial (MVP sugerido)
+## MVP Definition
 - Home `/`
-- Ejemplo de módulo "Tasks":
-  - Listar tareas
-  - Crear tarea
-  - Marcar completada
-  - Eliminar tarea
-  - Persistencia en localStorage
+- Example of main module "Dashboard":
+  - At the top show a picture of me followed by a title (my name and last name).
+  - in the top right we put a dropdown to change language (spanish and english) It shows either the Spanish flag or the UK flag.
+  - On the left, there’s a sidebar menu for navigating between sections of the website.
+  - in the middle show a description of myself
+  - in the botton put a basic footer
 
-## No alcance (por ahora)
-- Autenticación real
-- Backend
-- SSR avanzado / SEO complejo
-- Internacionalización
+## UX Guidelines
+- Clean and readable.
+- Mobile-friendly (Bootstrap responsive layout).
+- Accessible basics (labels, semantic elements, aria attributes when needed).
+
+## Future Enhancements (Optional)
+- Theme toggle (light/dark).
+- Content sourced from MD/MDX.
