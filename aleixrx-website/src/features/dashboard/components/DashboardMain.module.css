@@ -1,0 +1,72 @@
+.dashboard {
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 220, 160, 0.35),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 25% 40%,
+      rgba(120, 160, 255, 0.18),
+      transparent 60%
+    ),
+    linear-gradient(135deg, #fdfbff 0%, #f6f3ff 100%);
+}
+
+.avatar {
+  border-radius: 999px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  background-color: #ffffff;
+}
+
+.flag {
+  width: 26px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.flagSpain {
+  background: linear-gradient(
+    to bottom,
+    #aa151b 0%,
+    #aa151b 28%,
+    #f1bf00 28%,
+    #f1bf00 72%,
+    #aa151b 72%,
+    #aa151b 100%
+  );
+}
+
+.flagUnitedKingdom {
+  background: linear-gradient(135deg, #012169 0%, #012169 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.flagUnitedKingdom::before,
+.flagUnitedKingdom::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 44%,
+    #ffffff 44%,
+    #ffffff 56%,
+    transparent 56%
+  );
+}
+
+.flagUnitedKingdom::after {
+  background: linear-gradient(
+    -45deg,
+    transparent 44%,
+    #ffffff 44%,
+    #ffffff 56%,
+    transparent 56%
+  );
+  opacity: 0.9;
+}
