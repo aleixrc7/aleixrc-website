@@ -5,8 +5,8 @@ import { ThemeProvider } from "@/shared/lib/theme/ThemeProvider";
 import { AppShell } from "@/shared/components/layout/AppShell";
 
 export const metadata: Metadata = {
-  title: "Aleix Ruiz Cuevas — Portfolio",
-  description: "Personal portfolio of Aleix Ruiz Cuevas.",
+  title: "Aleix Rodriguez",
+  description: "Personal portfolio of Aleix Rodriguez.",
 };
 
 export default function RootLayout({
