@@ -7,18 +7,14 @@ export function DashboardView() {
   const { t } = useI18n();
 
   return (
-    <section className="container-fluid">
-      <div className="row justify-content-center">
-        <div className="col-12 col-lg-8 text-center">
-          <h1 className="display-3 fw-bold mb-4">{profile.fullName}</h1>
-          <h2 className="h4 text-body-secondary mb-3">
-            {t("dashboard.aboutTitle")}
-          </h2>
-          <p className="lead text-body-secondary mb-0">
-            {t("dashboard.description")}
-          </p>
-        </div>
-      </div>
+    <section className="container-fluid px-0">
+      <header>
+        <h1 className="mb-1">{profile.fullName}</h1>
+        <p className="text-body-secondary mb-0">{t("dashboard.aboutTitle")}</p>
+      </header>
+      <p className="text-body-secondary" style={{ maxWidth: "162ch" }}>
+        {t("dashboard.description")}
+      </p>
     </section>
   );
 }

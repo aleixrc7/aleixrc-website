@@ -12,7 +12,7 @@ export function Sidebar() {
   return (
     <aside className="app-shell__sidebar p-3">
       <div className="px-2 py-3 mb-2">
-        <span className="fw-bold fs-5">Portfolio</span>
+        <span className="app-brand">aleixrc</span>
       </div>
       <nav aria-label="Primary">
         <ul className="list-unstyled d-flex flex-column gap-1 m-0">

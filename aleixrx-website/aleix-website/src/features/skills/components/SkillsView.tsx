@@ -8,9 +8,9 @@ export function SkillsView() {
   const { t } = useI18n();
 
   return (
-    <section className="container-fluid">
-      <header className="mb-4">
-        <h1 className="h2 fw-bold mb-1">{t("skills.title")}</h1>
+    <section className="container-fluid px-0">
+      <header>
+        <h1 className="mb-1">{t("skills.title")}</h1>
         <p className="text-body-secondary mb-0">{t("skills.subtitle")}</p>
       </header>
       <ul className="list-unstyled d-flex flex-column gap-4 m-0">

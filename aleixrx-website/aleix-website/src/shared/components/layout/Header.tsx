@@ -9,8 +9,8 @@ export function Header() {
         <Image
           src={profile.avatarSrc}
           alt={profile.fullName}
-          width={56}
-          height={56}
+          width={80}
+          height={80}
           className="app-avatar"
           priority
         />
