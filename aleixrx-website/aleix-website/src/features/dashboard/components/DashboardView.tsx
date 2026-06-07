@@ -12,7 +12,10 @@ export function DashboardView() {
         <h1 className="mb-1">{profile.fullName}</h1>
         <p className="text-body-secondary mb-0">{t("dashboard.aboutTitle")}</p>
       </header>
-      <p className="text-body-secondary" style={{ maxWidth: "162ch" }}>
+      <p
+        className="text-body-secondary"
+        style={{ maxWidth: "162ch", whiteSpace: "pre-line" }}
+      >
         {t("dashboard.description")}
       </p>
     </section>
